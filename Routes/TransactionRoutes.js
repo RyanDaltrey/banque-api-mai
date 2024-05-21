@@ -5,5 +5,7 @@ const router = express.Router();
 
 router.get('/',(req, res) => TransactionController.getAllTransaction(req, res))
 router.get('/:id', (request, result) => TransactionController.getAllTransactionbyID(request,result));
+router.post('/', (request, result) => TransactionController.addTransaction(request, result));
+
 module.exports = router;
 

@@ -9,5 +9,9 @@ class CompteService {
     async getCompteByID(compteID){
         return await Compte.findByPk(compteID)
     }
+
+    async addCompte(comptedata){
+        return await Compte.create(comptedata);
+    }
 }
 module.exports = new CompteService();
