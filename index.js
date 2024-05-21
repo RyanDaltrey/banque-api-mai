@@ -27,13 +27,17 @@ const app = express();
 const clientRoutes = require('./Routes/ClientRoutes')
 const compteRoutes = require('./Routes/CompteRoutes')
 const transactionRoutes = require('./Routes/TransactionRoutes')
+const authenticateRoutes = require('./Routes/AuthenticateRoutes');
+const AuthenticateControllers = require('./Controllers/AuthenticateControllers');
+
 
 
 app.use(express.json());
 // '/clients' se que l'utilisateur mets dans le url pour avoir les donnees clients
-app.use('/clients', clientRoutes)
-app.use('/comptes', compteRoutes)
-app.use('/transactions', transactionRoutes)
+app.use('/clients',AuthenticateControllers.authenticateToken, clientRoutes)
+app.use('/comptes',AuthenticateControllers.authenticateToken, compteRoutes)
+app.use('/transactions',AuthenticateControllers.authenticateToken, transactionRoutes)
+app.use('/auth', authenticateRoutes)
 
 module.exports = app;
 
