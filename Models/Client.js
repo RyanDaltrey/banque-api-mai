@@ -63,6 +63,7 @@ Client.init({
                 client.CL_Password = await bcrypt.hash(client.CL_Password, 10);
         },
         beforeUpdate : async (client) => {
+            console.log(client);
             if (client.changed('CL_Password')){
                 client.CL_Password = await bcrypt.hash(client.CL_Password, 10)
             }

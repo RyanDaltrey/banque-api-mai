@@ -13,6 +13,19 @@ class ClientService {
     async addClient(clientdata){
         return await Client.create(clientdata);
     }
+
+    async removeClient(clientID){
+        return await Client.destroy({
+            where : {CL_ID : clientID}
+        })
+    }
+
+    async updateClient(clientID, client){
+        return await Client.update(client , {
+            where : {CL_ID : clientID},
+            individualHooks : true
+        })
+    }
 }
 module.exports = new ClientService();
 //On mets nous pour retourner un objet client qui sera disponible desuite
