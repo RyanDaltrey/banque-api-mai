@@ -33,5 +33,26 @@ class CompteController{
             
         }
     }
+
+    async removeCompte(request, result){
+        try {
+            await CompteService.removeCompte(request.params.id);
+            result.json({message : "Le compte a bien été supprimé"});
+        } catch (error) {
+            result.status(500);
+            result.json({error : "Une erreur est survenue lors de la supression du compte"})
+        }
+    }
+
+    async updateCompte (request, result){
+        try {
+            const compte = await CompteService.updateCompte(request.params.id , request.body);
+            result.json(compte);
+        } catch (error) {
+            result.status(500);
+            result.json({error : "Une erreur est survenue lors de la modification du compte"})
+        }
+    }
+    
 }
 module.exports = new CompteController();
